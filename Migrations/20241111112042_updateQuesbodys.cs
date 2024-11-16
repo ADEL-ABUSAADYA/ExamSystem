@@ -5,7 +5,7 @@
 namespace ExaminationSystem.Migrations
 {
     /// <inheritdoc />
-    public partial class updates2 : Migration
+    public partial class updateQuesbodys : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

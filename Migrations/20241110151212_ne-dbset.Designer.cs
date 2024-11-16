@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ExaminationSystem.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20241106184431_updates")]
-    partial class updates
+    [Migration("20241110151212_ne-dbset")]
+    partial class nedbset
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -62,6 +62,81 @@ namespace ExaminationSystem.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("Courses");
+                });
+
+            modelBuilder.Entity("ExaminationSystem.Models.Exam", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+
+                    b.Property<int>("CreatedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("MaxGrade")
+                        .HasColumnType("int");
+
+                    b.Property<int>("MaxTime")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("UpdatedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Exams");
+                });
+
+            modelBuilder.Entity("ExaminationSystem.Models.ExamQuestion", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+
+                    b.Property<int>("CreatedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("ExamID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("QuestionID")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("UpdatedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("ExamID");
+
+                    b.HasIndex("QuestionID");
+
+                    b.ToTable("ExamQuestion");
                 });
 
             modelBuilder.Entity("ExaminationSystem.Models.Instructor", b =>
@@ -123,6 +198,59 @@ namespace ExaminationSystem.Migrations
                     b.ToTable("InstructorCourse");
                 });
 
+            modelBuilder.Entity("ExaminationSystem.Models.Question", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+
+                    b.Property<int>("Body")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CreatedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("Grade")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("UpdatedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Question");
+                });
+
+            modelBuilder.Entity("ExaminationSystem.Models.ExamQuestion", b =>
+                {
+                    b.HasOne("ExaminationSystem.Models.Exam", "Exam")
+                        .WithMany("ExamQuestions")
+                        .HasForeignKey("ExamID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ExaminationSystem.Models.Question", "Question")
+                        .WithMany("ExamQuestions")
+                        .HasForeignKey("QuestionID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Exam");
+
+                    b.Navigation("Question");
+                });
+
             modelBuilder.Entity("ExaminationSystem.Models.InstructorCourse", b =>
                 {
                     b.HasOne("ExaminationSystem.Models.Course", "Course")
@@ -147,9 +275,19 @@ namespace ExaminationSystem.Migrations
                     b.Navigation("InstructorCourses");
                 });
 
+            modelBuilder.Entity("ExaminationSystem.Models.Exam", b =>
+                {
+                    b.Navigation("ExamQuestions");
+                });
+
             modelBuilder.Entity("ExaminationSystem.Models.Instructor", b =>
                 {
                     b.Navigation("InstructorCourses");
+                });
+
+            modelBuilder.Entity("ExaminationSystem.Models.Question", b =>
+                {
+                    b.Navigation("ExamQuestions");
                 });
 #pragma warning restore 612, 618
         }

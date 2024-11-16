@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "YFztaO6smxs=",
+  "dgSpecHash": "5O1A/8ci/ww=",
   "success": true,
   "projectFilePath": "/Users/adelabusaadya/Downloads/upskilling course/JSB/work/ExamSystem/ExaminationSystem.csproj",
   "expectedPackageFiles": [
     "/Users/adelabusaadya/.nuget/packages/azure.core/1.35.0/azure.core.1.35.0.nupkg.sha512",
     "/Users/adelabusaadya/.nuget/packages/azure.identity/1.10.3/azure.identity.1.10.3.nupkg.sha512",
+    "/Users/adelabusaadya/.nuget/packages/bogus/35.6.1/bogus.35.6.1.nupkg.sha512",
     "/Users/adelabusaadya/.nuget/packages/humanizer.core/2.14.1/humanizer.core.2.14.1.nupkg.sha512",
     "/Users/adelabusaadya/.nuget/packages/microsoft.bcl.asyncinterfaces/6.0.0/microsoft.bcl.asyncinterfaces.6.0.0.nupkg.sha512",
     "/Users/adelabusaadya/.nuget/packages/microsoft.codeanalysis.analyzers/3.3.3/microsoft.codeanalysis.analyzers.3.3.3.nupkg.sha512",

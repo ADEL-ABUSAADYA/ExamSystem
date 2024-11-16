@@ -6,6 +6,8 @@ namespace ExaminationSystem.ViewModels.Instrucotrs
     {
         public int ID { get; set; }
         public string Name { get; set; }
+        public DateTime Birthdate { get; set; }
+        public string Adress { get; set; }
     }
 
     public static class InstructorViewModelExtenion

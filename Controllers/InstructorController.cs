@@ -59,10 +59,13 @@ namespace ExaminationSystem.Controllers
         [HttpGet]
         public IEnumerable<InstrucorViewModel> GetAll()
         {
-            var instructors =
-                _instructorRepository.GetAll().ToViewModel();
+            // var instructors =
+            //     _instructorRepository.GetAll().ToViewModel();
+            FakeDataService fakeDataService = new FakeDataService();
 
-            return instructors;
+
+
+            return fakeDataService.GetData();
         }
 
         [HttpPut]

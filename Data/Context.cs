@@ -8,10 +8,18 @@ namespace ExaminationSystem.Data
     {
         public DbSet<Instructor> Instructors { get; set; }
         public DbSet<Course> Courses { get; set; }
+        public DbSet<Exam> Exams { get; set; }
+        public DbSet<Question> Questions { get; set; }
+        public DbSet<ExamQuestion> ExamQuestions { get; set; }
+        public DbSet<Answer> Answers { get; set; }
+        public DbSet<InstructorCourse> InstructorsCourse { get; set;}
+        public DbSet<Result> Results { get; set; }
+        public DbSet<Student> Students { get; set; }
+
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Data Source = .\SQLExpress; Initial Catalog = ExaminationSystem;Integrated security = true;trust server certificate = true")
+            optionsBuilder.UseSqlServer(@"Server=localhost,1433;Database=ExamSystemDB;User Id=SA;Password=YourPassword123;Encrypt=False;")
                 .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking)
                 .LogTo(log => Debug.WriteLine(log), LogLevel.Information)
                 .EnableSensitiveDataLogging();
