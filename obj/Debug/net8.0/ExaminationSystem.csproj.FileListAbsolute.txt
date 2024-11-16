@@ -428,3 +428,6 @@
 /Users/adelabusaadya/Downloads/upskilling course/JSB/work/ExamSystem/obj/Debug/net8.0/ExaminationSystem.genruntimeconfig.cache
 /Users/adelabusaadya/Downloads/upskilling course/JSB/work/ExamSystem/obj/Debug/net8.0/ref/ExaminationSystem.dll
 /Users/adelabusaadya/Downloads/upskilling course/JSB/work/ExamSystem/bin/Debug/net8.0/Bogus.dll
+/Users/adelabusaadya/Downloads/upskilling course/JSB/work/ExamSystem/bin/Debug/net8.0/Autofac.dll
+/Users/adelabusaadya/Downloads/upskilling course/JSB/work/ExamSystem/bin/Debug/net8.0/Autofac.Extensions.DependencyInjection.dll
+/Users/adelabusaadya/Downloads/upskilling course/JSB/work/ExamSystem/bin/Debug/net8.0/AutoMapper.dll

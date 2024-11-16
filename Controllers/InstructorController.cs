@@ -61,11 +61,11 @@ namespace ExaminationSystem.Controllers
         {
             // var instructors =
             //     _instructorRepository.GetAll().ToViewModel();
-            FakeDataService fakeDataService = new FakeDataService();
+            //     return instructors;
+            // FakeDataService fakeDataService = new FakeDataService();
+            // return fakeDataService.GetData();
 
-
-
-            return fakeDataService.GetData();
+            return _instructorRepository.GetAll().ProjectTo<InstrucorViewModel>();
         }
 
         [HttpPut]
@@ -77,11 +77,5 @@ namespace ExaminationSystem.Controllers
             _instructorRepository.SaveChanges();
         }
 
-        private IQueryable<Instructor> GetAllInstructors()
-        {
-            Context context = new Context();
-
-            return context.Instructors;
-        }
     }
 }
