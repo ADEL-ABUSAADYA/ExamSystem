@@ -12,17 +12,17 @@ namespace ExaminationSystem.Controllers
     [Route("[controller]/[action]")]
     public class ExamController : ControllerBase
     {
-        IExamService _examService;
+        IExamService _ExamService;
        
-        public ExamController()
+        public ExamController(IExamService ExamService)
         {
-            _examService = new ExamService();
+            _ExamService = ExamService;
         }
 
         [HttpPost]
         public string Create(ExamCreateViewModel viewModel)
         {
-            _examService.Add(viewModel);
+            _ExamService.Add(viewModel);
 
             return "Done";
         }

@@ -11,9 +11,9 @@ namespace ExaminationSystem.Data.Repository
         Context _context;
         DbSet<Entity> _dbSet;
 
-        public Repository()
+        public Repository(Context context)
         {
-            _context = new Context();
+            _context = context;
             _dbSet = _context.Set<Entity>();
         }
 

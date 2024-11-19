@@ -8,9 +8,9 @@ public class QuestinsController
 {
     IQuestionService _QuestionService;
        
-        public QuestinsController()
+        public QuestinsController(IQuestionService QuestionService)
         {
-            _QuestionService = new QuestionService();
+            _QuestionService = QuestionService;
         }
 
         [HttpPost]

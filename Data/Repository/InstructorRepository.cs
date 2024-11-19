@@ -9,9 +9,9 @@ namespace ExaminationSystem.Data.Repository
     {
         Context _context;
 
-        public InstructorRepository()
+        public InstructorRepository(Context context)
         {
-            _context = new Context();
+            _context = context;
         }
 
         public void Add(Instructor instructor)

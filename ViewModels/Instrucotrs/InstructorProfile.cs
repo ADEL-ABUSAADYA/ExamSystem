@@ -9,6 +9,6 @@ public class InstructorProfile : Profile
     public InstructorProfile(){
         CreateMap<Instructor, InstrucorViewModel>()
         .ForMember(dst => dst.Adress, ops => ops.MapFrom(src => "sdsd"));
-        CreateMap<Instructor, InstructorCreateViewModel>();
+        CreateMap<InstructorCreateViewModel, Instructor>();
     }
 }

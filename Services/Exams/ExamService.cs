@@ -7,32 +7,26 @@ namespace ExaminationSystem.Services.Exams
 {
     public class ExamService : IExamService
     {
-        IRepository<Exam> _examRepository;
+        IRepository<Exam> _ExamRepository;
         IExamQuestionService _ExamQuestionService;
 
-        public ExamService()
+        public ExamService(IRepository<Exam> ExamRepository, IExamQuestionService ExamQuestionService)
         {
-            _examRepository = new Repository<Exam>();
-            _ExamQuestionService = new ExamQuestionService();
+            _ExamRepository = ExamRepository;
+            _ExamQuestionService = ExamQuestionService;
         }
 
         public int Add(ExamCreateViewModel viewModel)
         {
             // validate exam data before insertion
 
-            var exam = new Exam
-            {
-                Date = viewModel.Date,
-                MaxGrade = viewModel.MaxGrade,
-                MaxTime = viewModel.MaxTime,
-            };
+            var exam = viewModel.Map<Exam>();
 
-            _examRepository.Add(exam);
+            _ExamRepository.Add(exam);
 
-            _examRepository.SaveChanges();
+            _ExamRepository.SaveChanges();
 
-            _ExamQuestionService.AddRange(viewModel.QuestionsIDs
-                .Select(x => new ExamQuestionCreateViewModel
+            _ExamQuestionService.AddRange(viewModel.QuestionsIDs.Select(x => new ExamQuestionCreateViewModel
                 {
                     ExamID = exam.ID,
                     QuestionID = x

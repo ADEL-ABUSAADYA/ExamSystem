@@ -11,71 +11,68 @@ namespace ExaminationSystem.Controllers
     public class InstructorController : ControllerBase
     {
         //InstructorRepository _instructorRepository;
-        IRepository<Instructor> _instructorRepository;
+        IInstructorService _InstructorService;
 
-        public InstructorController()
+        public InstructorController(IInstructorService InstructorService)
         {
-            _instructorRepository = new Repository<Instructor>();
+            _InstructorService = InstructorService;
         }
 
         [HttpPost]
         public string Create(InstructorCreateViewModel viewModel)
         {
-            //Context context = new Context();
-
-            //context.Instructors.Add(instructor);
-
-            //context.SaveChanges();
+            _InstructorService.Add(viewModel);
+            
 
             return "Done";
         }
 
-        [HttpGet]
-        public InstrucorViewModel GetByName(string name)
-        {
-            var instructor =
-                _instructorRepository.Get(x => x.Name.Contains(name))
-                .Select(x => new InstrucorViewModel { ID = x.ID, Name = x.Name })
-                .FirstOrDefault();
+        // [HttpGet]
+        // public InstrucorViewModel GetByName(string name)
+        // {
+        //     var instructor =
+        //         _InstructorService.Get(x => x.Name.Contains(name))
+        //         .Select(x => new InstrucorViewModel { ID = x.ID, Name = x.Name })
+        //         .FirstOrDefault();
 
-            return instructor;
-        }
+        //     return instructor;
+        // }
 
-        [HttpGet]
-        public InstrucorViewModel GetByID(int id)
-        {
-            //var instructor =
-            //    _instructorRepository.GetByID(id);
+        // [HttpGet]
+        // public InstrucorViewModel GetByID(int id)
+        // {
+        //     //var instructor =
+        //     //    _instructorRepository.GetByID(id);
 
-            //return instructor.ToViewModel();
+        //     //return instructor.ToViewModel();
 
-            var instructor =
-                _instructorRepository.Get(x => x.ID == id)
-                .ToViewModel().FirstOrDefault();
+        //     var instructor =
+        //         _InstructorService.Get(x => x.ID == id)
+        //         .ToViewModel().FirstOrDefault();
 
-            return instructor;
-        }
+        //     return instructor;
+        // }
 
-        [HttpGet]
-        public IEnumerable<InstrucorViewModel> GetAll()
-        {
-            // var instructors =
-            //     _instructorRepository.GetAll().ToViewModel();
-            //     return instructors;
-            // FakeDataService fakeDataService = new FakeDataService();
-            // return fakeDataService.GetData();
+        // [HttpGet]
+        // public IEnumerable<InstrucorViewModel> GetAll()
+        // {
+        //     // var instructors =
+        //     //     _instructorRepository.GetAll().ToViewModel();
+        //     //     return instructors;
+        //     // FakeDataService fakeDataService = new FakeDataService();
+        //     // return fakeDataService.GetData();
 
-            return _instructorRepository.GetAll().ProjectTo<InstrucorViewModel>();
-        }
+        //     return _InstructorService.GetAll().ProjectTo<InstrucorViewModel>();
+        // }
 
-        [HttpPut]
-        public void Update(int id, string name)
-        {
-            var instructor = new Instructor { ID = id, Name = name };
+        // [HttpPut]
+        // public void Update(int id, string name)
+        // {
+        //     var instructor = new Instructor { ID = id, Name = name };
 
-            _instructorRepository.SaveInclude(instructor, nameof(Instructor.Name));
-            _instructorRepository.SaveChanges();
-        }
+        //     _InstructorService.SaveInclude(instructor, nameof(Instructor.Name));
+        //     _InstructorService.SaveChanges();
+        // }
 
     }
 }

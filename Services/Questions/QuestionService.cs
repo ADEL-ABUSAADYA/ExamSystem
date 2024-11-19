@@ -9,10 +9,10 @@ public class QuestionService : IQuestionService
     IRepository<Question> _QuestionRepository;
     IExamQuestionService _ExamQuestionService;
 
-    public QuestionService()
+    public QuestionService(IRepository<Question> QuestionRepository, IExamQuestionService ExamQuestionService)
     {
-        _QuestionRepository = new Repository<Question>();
-        _ExamQuestionService = new ExamQuestionService();
+        _QuestionRepository = QuestionRepository;
+        _ExamQuestionService = ExamQuestionService;
     }
 
     public int Add(QuestionCreateViewModel viewModel)

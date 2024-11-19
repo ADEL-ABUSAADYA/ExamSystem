@@ -4634,6 +4634,7 @@
       "packagesPath": "/Users/adelabusaadya/.nuget/packages/",
       "outputPath": "/Users/adelabusaadya/Downloads/upskilling course/JSB/work/ExamSystem/obj/",
       "projectStyle": "PackageReference",
+      "UsingMicrosoftNETSdk": false,
       "configFilePaths": [
         "/Users/adelabusaadya/.nuget/NuGet/NuGet.Config"
       ],

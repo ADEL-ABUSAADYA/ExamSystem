@@ -2,6 +2,7 @@ using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using AutoMapper;
 using ExaminationSystem;
+using Microsoft.AspNetCore.ResponseCompression;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,8 +16,25 @@ builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
 builder.Host.ConfigureContainer<ContainerBuilder>(container => container.RegisterModule(new AutoFacModule()));
 
 builder.Services.AddAutoMapper(typeof(Program).Assembly);
+builder.Services.AddResponseCompression(opts =>
+    {
+        opts.EnableForHttps = true;
+        opts.Providers.Add<GzipCompressionProvider>();
+        opts.Providers.Add<BrotliCompressionProvider>();
+    });
+builder.Services.Configure<BrotliCompressionProviderOptions>(opts =>
+    {
+        opts. Level = System.IO.Compression.CompressionLevel.Fastest;
+    });
+
+builder.Services.Configure<GzipCompressionProviderOptions>(opts =>
+    {
+        opts. Level = System. IO.Compression.CompressionLevel.Optimal;
+    });
 
 var app = builder.Build();
+
+app.UseResponseCompression();
 
 AutoMapperService._mapper = app.Services.GetService<IMapper>();
 
