@@ -38,32 +38,31 @@ namespace ExaminationSystem.Controllers
         //     return instructor;
         // }
 
-        // [HttpGet]
-        // public InstrucorViewModel GetByID(int id)
-        // {
-        //     //var instructor =
-        //     //    _instructorRepository.GetByID(id);
+        [HttpGet]
+        public InstrucorViewModel GetByID(int id)
+        {
+            //var instructor =
+            //    _instructorRepository.GetByID(id);
 
-        //     //return instructor.ToViewModel();
+            //return instructor.ToViewModel();
 
-        //     var instructor =
-        //         _InstructorService.Get(x => x.ID == id)
-        //         .ToViewModel().FirstOrDefault();
+            var instructor =
+                _InstructorService.GetById(id);
 
-        //     return instructor;
-        // }
+            return instructor;
+        }
 
-        // [HttpGet]
-        // public IEnumerable<InstrucorViewModel> GetAll()
-        // {
-        //     // var instructors =
-        //     //     _instructorRepository.GetAll().ToViewModel();
-        //     //     return instructors;
-        //     // FakeDataService fakeDataService = new FakeDataService();
-        //     // return fakeDataService.GetData();
+        [HttpGet]
+        public IEnumerable<InstrucorViewModel> GetAll()
+        {
+            // var instructors =
+            //     _instructorRepository.GetAll().ToViewModel();
+            //     return instructors;
+            // FakeDataService fakeDataService = new FakeDataService();
+            // return fakeDataService.GetData();
 
-        //     return _InstructorService.GetAll().ProjectTo<InstrucorViewModel>();
-        // }
+            return _InstructorService.GetAll();
+        }
 
         // [HttpPut]
         // public void Update(int id, string name)

@@ -79,9 +79,9 @@ namespace ExaminationSystem.Data.Repository
             return _dbSet;
         }
 
-        public Entity GetByID(int id)
+        public IQueryable<Entity> GetByID(int id)
         {
-            return Get(x => x.ID == id).FirstOrDefault();
+            return _dbSet.Where(x => x.ID == id && !x.Deleted);
         }
 
         public void SaveChanges()

@@ -161,6 +161,13 @@ namespace ExaminationSystem.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
 
+                    b.Property<string>("Adress")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("Birthdate")
+                        .HasColumnType("datetime2");
+
                     b.Property<int>("CreatedBy")
                         .HasColumnType("int");
 
@@ -169,6 +176,10 @@ namespace ExaminationSystem.Migrations
 
                     b.Property<bool>("Deleted")
                         .HasColumnType("bit");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Mobile")
                         .IsRequired()

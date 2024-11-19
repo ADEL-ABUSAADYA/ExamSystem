@@ -11,7 +11,7 @@ namespace ExaminationSystem.Data.Repository
         IQueryable<Entity> GetAll();
         IQueryable<Entity> GetAllWithDeleted();
         IQueryable<Entity> Get(Expression<Func<Entity, bool>> predicate);
-        Entity GetByID(int id);
+        IQueryable<Entity> GetByID(int id);
         void SaveChanges();
     }
 }
