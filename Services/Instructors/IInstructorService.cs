@@ -5,7 +5,10 @@ namespace ExaminationSystem;
 
 public interface IInstructorService
 {
-    void Add(InstructorCreateViewModel instrucorViewModel);
-    InstrucorViewModel GetById(int id);
-    IQueryable<InstrucorViewModel> GetAll();
+    int Add(InstructorCreateViewModel instrucorViewModel);
+    InstructorViewModel GetById(int id);
+    IQueryable<InstructorViewModel> GetAll();
+    InstructorViewModel GetByName(string name);
+    InstructorViewModel UpdateInstructor(InstructorEditViewModel instructorEditViewModel);
+    bool Delete(Instructor instructor);
 }

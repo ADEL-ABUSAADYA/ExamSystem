@@ -2,13 +2,23 @@
 
 namespace ExaminationSystem.ViewModels.Instrucotrs
 {
-    public class InstructorCreateViewModel
+    public class InstructorCreateViewModel: IUpdatable
     {
         public string Name { get; set; }
         public string Mobile { get; set; }
         public string Email { get; set; }
         public DateTime Birthdate { get; set; }
         public string Adress { get; set; }
+
+        public string[] GetPropertyNames()
+        {
+            return new string[] { "Name", "Mobile", "Email", "Birthdate", "Adress" };
+        }
+
+        public int GetPropertyCount()
+        {
+            return GetPropertyNames().Count();
+        }
     }
 
     public static class InstructorCreateViewModelExtension

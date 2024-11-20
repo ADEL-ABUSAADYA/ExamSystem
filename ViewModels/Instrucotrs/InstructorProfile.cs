@@ -6,10 +6,11 @@ namespace ExaminationSystem;
 
 public class InstructorProfile : Profile
 {
-    public InstructorProfile(){
-        CreateMap<Instructor, InstrucorViewModel>()
-        .ForMember(dst => dst.Adress, ops => ops.MapFrom(src => "fgh"));
+    public InstructorProfile()
+    {
+        CreateMap<Instructor, InstructorViewModel>();
         CreateMap<InstructorCreateViewModel, Instructor>();
+        CreateMap<InstructorEditViewModel, Instructor>();
         // .ForMember(dest => dest.Birthdate, ops => ops.MapFrom(src => DateTime.Parse(src.Birthdate)));
     }
 }

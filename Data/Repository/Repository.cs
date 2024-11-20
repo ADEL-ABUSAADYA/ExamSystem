@@ -25,9 +25,10 @@ namespace ExaminationSystem.Data.Repository
             _dbSet.Add(entity);
         }
 
-        public void SaveInclude(Entity entity, params string[] properties)
+        public bool SaveInclude(Entity entity, params string[] properties)
         {
             var local = _dbSet.Local.FirstOrDefault(x => x.ID == entity.ID);
+            string[] immutableProperties = [nameof(entity.CreatedDate), nameof(entity.CreatedBy)];
 
             EntityEntry entry = null;
 
@@ -43,19 +44,20 @@ namespace ExaminationSystem.Data.Repository
 
             foreach (var property in entry.Properties)
             {
-                if(properties.Contains(property.Metadata.Name))
+                if(properties.Contains(property.Metadata.Name)
+                   && !property.Metadata.IsPrimaryKey()
+                   && !immutableProperties.Contains(property.Metadata.Name))
                 {
                     property.CurrentValue = entity.GetType().GetProperty(property.Metadata.Name).GetValue(entity);
                     property.IsModified = true;
                 }
             }
+            return ;
         }
-
-
-        public void Delete(Entity entity)
+        public bool Delete(Entity entity)
         {
             entity.Deleted = true;
-            SaveInclude(entity, nameof(BaseModel.Deleted));
+            return SaveInclude(entity, nameof(BaseModel.Deleted));
         }
 
         public void HardDelete(Entity entity)

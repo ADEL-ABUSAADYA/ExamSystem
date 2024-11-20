@@ -11,20 +11,49 @@ public class InstructorService : IInstructorService
     {
         _InstructorRepository = InstructorRepository;
     }
-    public void Add(InstructorCreateViewModel instructorCreateViewModel)
+    public int Add(InstructorCreateViewModel instructorCreateViewModel)
     {
         var instructor = instructorCreateViewModel.Map<Instructor>();
         _InstructorRepository.Add(instructor);
         _InstructorRepository.SaveChanges();
+        return instructor.ID;
     }
 
-    public InstrucorViewModel GetById(int id)
+    public InstructorViewModel GetById(int id)
     {
-       return  _InstructorRepository.GetByID(id).MapFirstOrDefault<InstrucorViewModel>();
+       return  _InstructorRepository.GetByID(id).MapFirstOrDefault<InstructorViewModel>();
     }
 
-    public IQueryable<InstrucorViewModel> GetAll()
+    public IQueryable<InstructorViewModel> GetAll()
     {
-        return _InstructorRepository.GetAll().ProjectTo<InstrucorViewModel>();
+        return _InstructorRepository.GetAll().ProjectTo<InstructorViewModel>();
+    }
+    public InstructorViewModel GetByName(string name)
+    {
+        return  _InstructorRepository.Get(x => x.Name.Contains(name)).MapFirstOrDefault<InstructorViewModel>();
+    }
+
+    public InstructorViewModel UpdateInstructor(InstructorEditViewModel instructorEditViewModel)
+    {
+        var instructor = instructorEditViewModel.Map<Instructor>();
+        Instructor savedInstructor;
+        if (instructorEditViewModel.GetPropertyCount() < instructorEditViewModel.GetPropertyCount()/2)
+        {
+            savedInstructor = _InstructorRepository.SaveInclude(instructor, instructorEditViewModel.GetPropertyNames());
+        }
+        else
+        {
+            savedInstructor = _InstructorRepository.SaveExclude(instructor, instructorEditViewModel.GetPropertyNames());
+        }
+
+        _InstructorRepository.SaveChanges();
+
+        return savedInstructor.Map<InstructorViewModel>();
+    }
+
+    public bool Delete(Instructor instructor)
+    {
+        _InstructorRepository.Delete(instructor);
+        _InstructorRepository.SaveChanges();
     }
 }
