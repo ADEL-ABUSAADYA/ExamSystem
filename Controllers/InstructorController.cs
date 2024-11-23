@@ -1,7 +1,9 @@
 ﻿using ExaminationSystem.Data;
 using ExaminationSystem.Data.Repository;
 using ExaminationSystem.Models;
+using ExaminationSystem.Services.GenaricService;
 using ExaminationSystem.ViewModels;
+using ExaminationSystem.ViewModels.Courses;
 using ExaminationSystem.ViewModels.Instrucotrs;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,9 +13,9 @@ namespace ExaminationSystem.Controllers
     [Route("[controller]/[action]")]
     public class InstructorController : ControllerBase
     {
-        IInstructorService _InstructorService;
+        IService<Instructor,BaseViewModel> _InstructorService;
 
-        public InstructorController(IInstructorService InstructorService)
+        public InstructorController(IService<Instructor,BaseViewModel> InstructorService)
         {
             _InstructorService = InstructorService;
         }
@@ -24,7 +26,7 @@ namespace ExaminationSystem.Controllers
             int instructorID = _InstructorService.Add(viewModel);
 
             var result = _InstructorService.GetById(instructorID);
-            return new ResponseViewModel<InstructorViewModel>(){Data = result, Message = "Success", ErrorCode = 0, IsSuccess = true};
+            return new ResponseViewModel<InstructorViewModel>(){Data = (InstructorViewModel)result, Message = "Success", ErrorCode = 0, IsSuccess = true};
         }
 
         [HttpGet]
@@ -32,7 +34,7 @@ namespace ExaminationSystem.Controllers
         {
             var instructor = _InstructorService.GetByName(name);
             
-            return new ResponseViewModel<InstructorViewModel>(){Data = instructor, Message = "Success", ErrorCode = 0, IsSuccess = true};
+            return new ResponseViewModel<InstructorViewModel>(){Data = (InstructorViewModel)instructor, Message = "Success", ErrorCode = 0, IsSuccess = true};
         }
 
         [HttpGet]
@@ -40,21 +42,22 @@ namespace ExaminationSystem.Controllers
         {
             var instructor = _InstructorService.GetById(id);
 
-            return new ResponseViewModel<InstructorViewModel>(){Data = instructor, Message = "Success", ErrorCode = 0, IsSuccess = true};
+            return new ResponseViewModel<InstructorViewModel>(){Data = (InstructorViewModel)instructor, Message = "Success", ErrorCode = 0, IsSuccess = true};
         }
 
         [HttpGet]
         public ResponseViewModel<IEnumerable<InstructorViewModel>> GetAll()
         {
             var instructors= _InstructorService.GetAll();
-            return new ResponseViewModel<IEnumerable<InstructorViewModel>>(){Data = instructors, Message = "Success", ErrorCode = 0, IsSuccess = true};
+            var result = instructors.ProjectTo<InstructorViewModel>();
+            return new ResponseViewModel<IEnumerable<InstructorViewModel>>(){Data = result, Message = "Success", ErrorCode = 0, IsSuccess = true};
         }
 
         [HttpPut]
-        public ResponseViewModel<InstructorViewModel> Update(InstructorEditViewModel viewModel)
+        public ResponseViewModel<bool> Update(InstructorEditViewModel viewModel)
         {
-            var updateInstructor = _InstructorService.UpdateInstructor(viewModel);
-            return new ResponseViewModel<InstructorViewModel>(){Data = updateInstructor, Message = "Success", ErrorCode = 0, IsSuccess = true};
+            var updateInstructor = _InstructorService.Update(viewModel);
+            return new ResponseViewModel<bool>(){Data = updateInstructor, Message = "Saved", ErrorCode = 0, IsSuccess = true};
         }
 
         [HttpDelete]
@@ -64,9 +67,62 @@ namespace ExaminationSystem.Controllers
             return new ResponseViewModel<bool>(){Message = "Deleted", ErrorCode = 0, IsSuccess = true};
         }
         #endregion
+        // IInstructorService _InstructorService;
+        //
+        // public InstructorController(IInstructorService InstructorService)
+        // {
+        //     _InstructorService = InstructorService;
+        // }
+        // #region Instructor Actions
+        // [HttpPost]
+        // public ResponseViewModel<InstructorViewModel> Create(InstructorCreateViewModel viewModel)
+        // {
+        //     int instructorID = _InstructorService.Add(viewModel);
+        //
+        //     var result = _InstructorService.GetById(instructorID);
+        //     return new ResponseViewModel<InstructorViewModel>(){Data = result, Message = "Success", ErrorCode = 0, IsSuccess = true};
+        // }
+        //
+        // [HttpGet]
+        // public ResponseViewModel<InstructorViewModel> GetByName(string name)
+        // {
+        //     var instructor = _InstructorService.GetByName(name);
+        //     
+        //     return new ResponseViewModel<InstructorViewModel>(){Data = instructor, Message = "Success", ErrorCode = 0, IsSuccess = true};
+        // }
+        //
+        // [HttpGet]
+        // public ResponseViewModel<InstructorViewModel> GetByID(int id)
+        // {
+        //     var instructor = _InstructorService.GetById(id);
+        //
+        //     return new ResponseViewModel<InstructorViewModel>(){Data = instructor, Message = "Success", ErrorCode = 0, IsSuccess = true};
+        // }
+        //
+        // [HttpGet]
+        // public ResponseViewModel<IEnumerable<InstructorViewModel>> GetAll()
+        // {
+        //     var instructors= _InstructorService.GetAll();
+        //     return new ResponseViewModel<IEnumerable<InstructorViewModel>>(){Data = instructors, Message = "Success", ErrorCode = 0, IsSuccess = true};
+        // }
+        //
+        // [HttpPut]
+        // public ResponseViewModel<bool> Update(InstructorEditViewModel viewModel)
+        // {
+        //     var updateInstructor = _InstructorService.UpdateInstructor(viewModel);
+        //     return new ResponseViewModel<bool>(){Data = updateInstructor, Message = "Saved", ErrorCode = 0, IsSuccess = true};
+        // }
+        //
+        // [HttpDelete]
+        // public ResponseViewModel<bool> Delete(int id)
+        // {
+        //     _InstructorService.Delete(id);
+        //     return new ResponseViewModel<bool>(){Message = "Deleted", ErrorCode = 0, IsSuccess = true};
+        // }
+        // #endregion
         
         // #region Course Management
-        //
+        
         // [HttpPost]
         // public ResponseViewModel<CourseViewModel> CreateCourse(CourseCreateViewModel viewModel)
         // {

@@ -52,7 +52,7 @@ namespace ExaminationSystem.Data.Repository
                     property.IsModified = true;
                 }
             }
-            return ;
+            return true;
         }
         public bool Delete(Entity entity)
         {

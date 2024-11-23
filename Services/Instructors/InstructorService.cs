@@ -33,27 +33,19 @@ public class InstructorService : IInstructorService
         return  _InstructorRepository.Get(x => x.Name.Contains(name)).MapFirstOrDefault<InstructorViewModel>();
     }
 
-    public InstructorViewModel UpdateInstructor(InstructorEditViewModel instructorEditViewModel)
+    public bool UpdateInstructor(InstructorEditViewModel instructorEditViewModel)
     {
         var instructor = instructorEditViewModel.Map<Instructor>();
-        Instructor savedInstructor;
-        if (instructorEditViewModel.GetPropertyCount() < instructorEditViewModel.GetPropertyCount()/2)
-        {
-            savedInstructor = _InstructorRepository.SaveInclude(instructor, instructorEditViewModel.GetPropertyNames());
-        }
-        else
-        {
-            savedInstructor = _InstructorRepository.SaveExclude(instructor, instructorEditViewModel.GetPropertyNames());
-        }
-
+        var savedInstructor = _InstructorRepository.SaveInclude(instructor, instructorEditViewModel.GetPropertyNames());
         _InstructorRepository.SaveChanges();
 
-        return savedInstructor.Map<InstructorViewModel>();
+        return savedInstructor;
     }
 
-    public bool Delete(Instructor instructor)
+    public bool Delete(int id)
     {
-        _InstructorRepository.Delete(instructor);
+        bool isDeleted = _InstructorRepository.Delete(new Instructor() { ID = id });
         _InstructorRepository.SaveChanges();
+        return isDeleted;
     }
 }

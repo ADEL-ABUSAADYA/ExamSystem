@@ -1,0 +1,13 @@
+using ExaminationSystem.ViewModels.Courses;
+
+namespace ExaminationSystem.Services.Courses;
+
+public interface ICourseService
+{
+    int Create(CourseCreateViewModel course);
+    CourseViewModel GetById(int id);
+    IQueryable<CourseViewModel> GetAll();
+    CourseViewModel GetByName(string name);
+    bool UpdateCourse(CourseEditViewModel instructorEditViewModel);
+    bool Delete(int id);
+}

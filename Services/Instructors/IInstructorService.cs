@@ -9,6 +9,6 @@ public interface IInstructorService
     InstructorViewModel GetById(int id);
     IQueryable<InstructorViewModel> GetAll();
     InstructorViewModel GetByName(string name);
-    InstructorViewModel UpdateInstructor(InstructorEditViewModel instructorEditViewModel);
-    bool Delete(Instructor instructor);
+    bool UpdateInstructor(InstructorEditViewModel instructorEditViewModel);
+    bool Delete(int id);
 }

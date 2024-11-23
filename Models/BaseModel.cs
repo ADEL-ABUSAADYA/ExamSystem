@@ -1,4 +1,6 @@
-﻿namespace ExaminationSystem.Models
+﻿using Bogus.DataSets;
+
+namespace ExaminationSystem.Models
 {
     public class BaseModel
     {

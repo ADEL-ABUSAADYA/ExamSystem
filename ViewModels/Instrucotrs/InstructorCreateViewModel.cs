@@ -2,7 +2,7 @@
 
 namespace ExaminationSystem.ViewModels.Instrucotrs
 {
-    public class InstructorCreateViewModel: IUpdatable
+    public class InstructorCreateViewModel: BaseViewModel
     {
         public string Name { get; set; }
         public string Mobile { get; set; }
@@ -10,12 +10,12 @@ namespace ExaminationSystem.ViewModels.Instrucotrs
         public DateTime Birthdate { get; set; }
         public string Adress { get; set; }
 
-        public string[] GetPropertyNames()
+        public override string[] GetPropertyNames()
         {
             return new string[] { "Name", "Mobile", "Email", "Birthdate", "Adress" };
         }
 
-        public int GetPropertyCount()
+        public override int GetPropertyCount()
         {
             return GetPropertyNames().Count();
         }
