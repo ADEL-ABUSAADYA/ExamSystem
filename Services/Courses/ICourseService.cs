@@ -8,6 +8,6 @@ public interface ICourseService
     CourseViewModel GetById(int id);
     IQueryable<CourseViewModel> GetAll();
     CourseViewModel GetByName(string name);
-    bool UpdateCourse(CourseEditViewModel instructorEditViewModel);
+    bool UpdateCourse(CourseEditViewModel courseEditViewModel);
     bool Delete(int id);
 }

@@ -1,22 +1,15 @@
 ﻿using System.Numerics;
 using ExaminationSystem.Models;
+using ExaminationSystem.Models.Enums;
 
 namespace ExaminationSystem;
 
 public class QuestionCreateViewModel
 {
     public string Body { get; set; }
-    public int Grade { get; set; }
+    public int Mark { get; set; }
+    public QuestionLevel Level { get; set; }
+    
+    public ICollection<int> AnswersIDs { get; set; }
 }
 
-public static class QuestionCreateViewModelExtension
-    {
-        public static Question ToModel(this QuestionCreateViewModel viewModel)
-        {
-            return new Question
-            {
-                Body = viewModel.Body,
-                Grade = viewModel.Grade,
-            };
-        }
-    }

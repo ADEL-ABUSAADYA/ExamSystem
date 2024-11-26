@@ -16,10 +16,10 @@ namespace ExaminationSystem.Data
         
         
         
-        public DbSet<InstructorCourses> InstructorsCourse { get; set;}
-        public DbSet<StudentCourses> StudentsCourses { get; set; }
-        public DbSet<StudentExams> StudentExams { get; set; }
-        public DbSet<ExamQuestions> ExamQuestions { get; set; }
+        public DbSet<InstructorCourse> InstructorsCourse { get; set;}
+        public DbSet<StudentCourse> StudentsCourses { get; set; }
+        public DbSet<StudentExam> StudentExams { get; set; }
+        public DbSet<ExamQuestion> ExamQuestions { get; set; }
         
         
         

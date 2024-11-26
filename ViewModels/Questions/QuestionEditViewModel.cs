@@ -1,13 +1,13 @@
 ﻿using ExaminationSystem.Models;
 
-namespace ExaminationSystem.ViewModels.Instrucotrs
+namespace ExaminationSystem.ViewModels.Questions
 {
-    public class InstructorEditViewModel : InstructorCreateViewModel, IUpdatable
+    public class QuestionEditViewModel : QuestionCreateViewModel, IUpdatable
     {
         public int ID { get; set; }
         public string[] GetPropertyNames()
         {
-            string[] propertyNames = {nameof(Name), nameof(Email), nameof(Adress), nameof(Mobile), nameof(Birthdate)};
+            string[] propertyNames = {nameof(Body), nameof(Mark), nameof(Level), nameof(AnswersIDs)};
             return propertyNames;
         }
 

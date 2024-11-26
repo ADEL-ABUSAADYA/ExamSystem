@@ -1,11 +1,15 @@
-﻿using ExaminationSystem.ViewModels.Exams;
+﻿
+using ExaminationSystem.ViewModels.Exams;
 
 namespace ExaminationSystem.Services.Exams
 {
     public interface IExamService
     {
         int Add(ExamCreateViewModel model);
-
-        // ExamViewModel GetByID(int id);
+        ExamViewModel GetExamByID(int id);
+        IQueryable GetAllExams();
+        ExamViewModel GetExamByName(string name);
+        bool UpdateExam(ExamEditViewModel EditViewModel);
+        bool Delete(int id);
     }
 }

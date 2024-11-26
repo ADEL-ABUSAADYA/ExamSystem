@@ -1,13 +1,13 @@
 ﻿using ExaminationSystem.Models;
 
-namespace ExaminationSystem.ViewModels.Instrucotrs
+namespace ExaminationSystem.ViewModels.Groups
 {
-    public class InstructorEditViewModel : InstructorCreateViewModel, IUpdatable
+    public class GroupEditViewModel : GroupCreateViewModel , IUpdatable
     {
         public int ID { get; set; }
         public string[] GetPropertyNames()
         {
-            string[] propertyNames = {nameof(Name), nameof(Email), nameof(Adress), nameof(Mobile), nameof(Birthdate)};
+            string[] propertyNames = {nameof(Name), nameof(InstructorID), nameof(CourseID)};
             return propertyNames;
         }
 
@@ -16,4 +16,5 @@ namespace ExaminationSystem.ViewModels.Instrucotrs
             return GetPropertyNames().Count();
         }
     }
+    
 }

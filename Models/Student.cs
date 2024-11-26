@@ -10,8 +10,8 @@
         public string Email { get; set; }
         
         
-        public ICollection<StudentExams> ExamAssignments{ get; set; }
-        public ICollection<StudentCourses> StudentCourseEnrollments { get; set; }
+        public ICollection<StudentExam> ExamAssignments{ get; set; }
+        public ICollection<StudentCourse> StudentCourseEnrollments { get; set; }
         public ICollection<Group> Groups { get; set; }
     }
 }

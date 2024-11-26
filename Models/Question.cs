@@ -8,7 +8,7 @@ namespace ExaminationSystem.Models
         public int Mark { get; set; }
         public QuestionLevel Level { get; set; }
 
-        public ICollection<ExamQuestions> ExamQuestions { get; set; }
+        public ICollection<ExamQuestion> ExamQuestions { get; set; }
         public ICollection<Answer> Answers { get; set; }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace ExaminationSystem.Models
 {
-    public class ExamQuestions
+    public class ExamQuestion
     {
         public int ID { get; set; }
         public int ExamID { get; set; }

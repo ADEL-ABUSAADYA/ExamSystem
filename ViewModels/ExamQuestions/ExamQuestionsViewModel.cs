@@ -1,6 +1,6 @@
 ﻿namespace ExaminationSystem.ViewModels.Exams
 {
-    public class ExamQuestionCreateViewModel
+    public class ExamQuestionsViewModel
     {
         public int ExamID { get; set; }
         public int QuestionID { get; set; }

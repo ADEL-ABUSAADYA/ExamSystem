@@ -4,7 +4,7 @@ namespace ExaminationSystem.Services.ExamQuestions
 {
     public interface IExamQuestionService
     {
-        void Add(ExamQuestionCreateViewModel question);
-        void AddRange(IEnumerable<ExamQuestionCreateViewModel> questions);
+        void Add(ExamQuestionsViewModel questions);
+        void AddRange(IEnumerable<ExamQuestionsViewModel> questions);
     }
 }

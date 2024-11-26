@@ -1,6 +1,6 @@
 namespace ExaminationSystem.Models;
 
-public class StudentCourses 
+public class StudentCourse 
 {
     public int ID {get; set;}
     public int StudentID { get; set; }

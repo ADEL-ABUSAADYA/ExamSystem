@@ -11,7 +11,7 @@ public class InstructorProfile : AutoMapper.Profile
     {
         // Assuming you want to map from Instructor to InstructorViewModel
         CreateMap<Instructor, InstructorCreateViewModel>().ReverseMap();
-        CreateMap<Instructor, InstructorViewModel>();
+        CreateMap<Instructor, InstructorViewModel>().ReverseMap();
             // .IncludeBase<Instructor, BaseViewModel>();
 
         // Assuming BaseViewModel is a parent class of InstructorViewModel

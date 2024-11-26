@@ -6,33 +6,25 @@ namespace ExaminationSystem.Services.ExamQuestions
 {
     public class ExamQuestionService : IExamQuestionService
     {
-        IRepository<Models.ExamQuestions> _ExamQuestionRepository;
+        IRepository<ExamQuestion> _ExamQuestionRepository;
 
-        public ExamQuestionService(IRepository<Models.ExamQuestions> ExamQuestionRepository)
+        public ExamQuestionService(IRepository<ExamQuestion> ExamQuestionRepository)
         {
             _ExamQuestionRepository = ExamQuestionRepository;
         }
 
-        public void Add(ExamQuestionCreateViewModel viewModel)
+        public void Add(ExamQuestionsViewModel viewModel)
         {
-            _ExamQuestionRepository.Add(new Models.ExamQuestions
-            {
-                ExamID = viewModel.ExamID,
-                QuestionID = viewModel.QuestionID,
-            });
-
+            var newExamQuestion = viewModel.Map<ExamQuestion>();
+            _ExamQuestionRepository.Add(newExamQuestion);
             _ExamQuestionRepository.SaveChanges();
         }
 
-        public void AddRange(IEnumerable<ExamQuestionCreateViewModel> viewModels)
+        public void AddRange(IEnumerable<ExamQuestionsViewModel> viewModels)
         {
             foreach (var viewModel in viewModels)
             {
-                _ExamQuestionRepository.Add(new Models.ExamQuestions
-                {
-                    ExamID = viewModel.ExamID,
-                    QuestionID = viewModel.QuestionID,
-                });
+                _ExamQuestionRepository.Add(viewModel.Map<ExamQuestion>());
             }
 
             _ExamQuestionRepository.SaveChanges();

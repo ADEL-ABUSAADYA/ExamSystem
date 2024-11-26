@@ -15,22 +15,12 @@ public class QuestionService : IQuestionService
         _ExamQuestionService = ExamQuestionService;
     }
 
-    public int Add(QuestionCreateViewModel viewModel)
+    public int Add(QuestionCreateViewModel questionCreateViewModel)
     {
-        // validate exam data before insertion
-
-        var Question = new Question
-        {
-            Body = viewModel.Body,
-            Grade = viewModel.Grade,
-        };
-
-        _QuestionRepository.Add(Question);
-
+        var newQuestion = questionCreateViewModel.Map<Question>();
+        _QuestionRepository.Add(newQuestion);
         _QuestionRepository.SaveChanges();
-
-
-        return Question.ID;
+        return newQuestion.ID;
     }
 
 }

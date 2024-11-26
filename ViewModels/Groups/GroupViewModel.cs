@@ -1,9 +1,9 @@
 ﻿using ExaminationSystem.Models;
 using ExaminationSystem.ViewModels.InstructorCourses;
 
-namespace ExaminationSystem.ViewModels.Instrucotrs
+namespace ExaminationSystem.ViewModels.Groups
 {
-    public class InstructorViewModel
+    public class GroupViewModel 
     {
         public int ID { get; set; }
         public string Name { get; set; }

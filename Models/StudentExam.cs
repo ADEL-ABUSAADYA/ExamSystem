@@ -1,6 +1,6 @@
 namespace ExaminationSystem.Models;
 
-public class StudentExams
+public class StudentExam
 {
     public int ID { get; set; }
     public bool IsCompleted { get; set; }

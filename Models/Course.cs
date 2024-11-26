@@ -4,7 +4,7 @@
     {
         public Course()
         {
-            InstructorCourses = new List<InstructorCourses>();
+            InstructorCourses = new List<InstructorCourse>();
         }
         public string Name { get; set; }
         public string Title { get; set; }
@@ -14,8 +14,8 @@
         public DateTime EndDate { get; set; }
         
 
-        public ICollection<InstructorCourses> InstructorCourses { get; set; }
-        public ICollection<StudentCourses> StudentCourseEnrollments { get; set; }
+        public ICollection<InstructorCourse> InstructorCourses { get; set; }
+        public ICollection<StudentCourse> StudentCourseEnrollments { get; set; }
         public ICollection<Group> Groups { get; set; }
     }
 }
