@@ -1,9 +1,4 @@
-﻿using ExaminationSystem.Data;
-using ExaminationSystem.Data.Repository;
-using ExaminationSystem.Models;
-using ExaminationSystem.Services.GenaricService;
-using ExaminationSystem.ViewModels;
-using ExaminationSystem.ViewModels.Courses;
+﻿using ExaminationSystem.ViewModels;
 using ExaminationSystem.ViewModels.Instrucotrs;
 using Microsoft.AspNetCore.Mvc;
 
@@ -13,20 +8,19 @@ namespace ExaminationSystem.Controllers
     [Route("[controller]/[action]")]
     public class InstructorController : ControllerBase
     {
-        IService<Instructor,BaseViewModel> _InstructorService;
+        IInstructorService _InstructorService;
 
-        public InstructorController(IService<Instructor,BaseViewModel> InstructorService)
+        public InstructorController(IInstructorService InstructorService)
         {
             _InstructorService = InstructorService;
         }
         #region Instructor Actions
         [HttpPost]
-        public ResponseViewModel<InstructorViewModel> Create(InstructorCreateViewModel viewModel)
+        public ResponseViewModel<int> Create(InstructorCreateViewModel viewModel)
         {
             int instructorID = _InstructorService.Add(viewModel);
-
-            var result = _InstructorService.GetById(instructorID);
-            return new ResponseViewModel<InstructorViewModel>(){Data = (InstructorViewModel)result, Message = "Success", ErrorCode = 0, IsSuccess = true};
+            
+            return new ResponseViewModel<int>(){Data = instructorID, Message = "Success", ErrorCode = 0, IsSuccess = true};
         }
 
         [HttpGet]
@@ -34,7 +28,7 @@ namespace ExaminationSystem.Controllers
         {
             var instructor = _InstructorService.GetByName(name);
             
-            return new ResponseViewModel<InstructorViewModel>(){Data = (InstructorViewModel)instructor, Message = "Success", ErrorCode = 0, IsSuccess = true};
+            return new ResponseViewModel<InstructorViewModel>(){Data = instructor, Message = "Success", ErrorCode = 0, IsSuccess = true};
         }
 
         [HttpGet]
@@ -42,22 +36,21 @@ namespace ExaminationSystem.Controllers
         {
             var instructor = _InstructorService.GetById(id);
 
-            return new ResponseViewModel<InstructorViewModel>(){Data = (InstructorViewModel)instructor, Message = "Success", ErrorCode = 0, IsSuccess = true};
+            return new ResponseViewModel<InstructorViewModel>(){Data = instructor, Message = "Success", ErrorCode = 0, IsSuccess = true};
         }
 
         [HttpGet]
         public ResponseViewModel<IEnumerable<InstructorViewModel>> GetAll()
         {
-            var instructors= _InstructorService.GetAll();
-            var result = instructors.ProjectTo<InstructorViewModel>();
-            return new ResponseViewModel<IEnumerable<InstructorViewModel>>(){Data = result, Message = "Success", ErrorCode = 0, IsSuccess = true};
+            var instructorsList = _InstructorService.GetAll().ProjectTo<InstructorViewModel>();
+            return new ResponseViewModel<IEnumerable<InstructorViewModel>>(){Data = instructorsList, Message = "Success", ErrorCode = 0, IsSuccess = true};
         }
 
         [HttpPut]
         public ResponseViewModel<bool> Update(InstructorEditViewModel viewModel)
         {
-            var updateInstructor = _InstructorService.Update(viewModel);
-            return new ResponseViewModel<bool>(){Data = updateInstructor, Message = "Saved", ErrorCode = 0, IsSuccess = true};
+            var isUpdateInstructor = _InstructorService.UpdateInstructor(viewModel);
+            return new ResponseViewModel<bool>(){Data = isUpdateInstructor, Message = "Saved", ErrorCode = 0, IsSuccess = true};
         }
 
         [HttpDelete]

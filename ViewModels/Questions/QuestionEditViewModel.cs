@@ -7,7 +7,7 @@ namespace ExaminationSystem.ViewModels.Questions
         public int ID { get; set; }
         public string[] GetPropertyNames()
         {
-            string[] propertyNames = {nameof(Body), nameof(Mark), nameof(Level), nameof(AnswersIDs)};
+            string[] propertyNames = {nameof(Body), nameof(Mark), nameof(Level), nameof(Answers)};
             return propertyNames;
         }
 

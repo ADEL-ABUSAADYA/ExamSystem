@@ -1,7 +1,6 @@
 ﻿using ExaminationSystem.Data.Repository;
 using ExaminationSystem.Models;
 using ExaminationSystem.Services.ExamQuestions;
-using ExaminationSystem.ViewModels.Courses;
 using ExaminationSystem.ViewModels.Exams;
 
 
@@ -43,7 +42,7 @@ namespace ExaminationSystem.Services.Exams
             return exam;
         }
 
-        public IQueryable GetAllExams()
+        public IQueryable<ExamViewModel> GetAllExams()
         {
             var exams = _ExamRepository.GetAll().ProjectTo<ExamViewModel>();
             return exams;

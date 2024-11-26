@@ -10,6 +10,6 @@ public class QuestionCreateViewModel
     public int Mark { get; set; }
     public QuestionLevel Level { get; set; }
     
-    public ICollection<int> AnswersIDs { get; set; }
+    public ICollection<Answer> Answers { get; set; }
 }
 

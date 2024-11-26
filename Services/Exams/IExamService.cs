@@ -7,7 +7,7 @@ namespace ExaminationSystem.Services.Exams
     {
         int Add(ExamCreateViewModel model);
         ExamViewModel GetExamByID(int id);
-        IQueryable GetAllExams();
+        IQueryable<ExamViewModel> GetAllExams();
         ExamViewModel GetExamByName(string name);
         bool UpdateExam(ExamEditViewModel EditViewModel);
         bool Delete(int id);
