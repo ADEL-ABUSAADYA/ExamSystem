@@ -6,16 +6,16 @@ namespace ExaminationSystem.Services.ExamQuestions
 {
     public class ExamQuestionService : IExamQuestionService
     {
-        IRepository<ExamQuestion> _ExamQuestionRepository;
+        IRepository<Models.ExamQuestions> _ExamQuestionRepository;
 
-        public ExamQuestionService(IRepository<ExamQuestion> ExamQuestionRepository)
+        public ExamQuestionService(IRepository<Models.ExamQuestions> ExamQuestionRepository)
         {
             _ExamQuestionRepository = ExamQuestionRepository;
         }
 
         public void Add(ExamQuestionCreateViewModel viewModel)
         {
-            _ExamQuestionRepository.Add(new ExamQuestion
+            _ExamQuestionRepository.Add(new Models.ExamQuestions
             {
                 ExamID = viewModel.ExamID,
                 QuestionID = viewModel.QuestionID,
@@ -28,7 +28,7 @@ namespace ExaminationSystem.Services.ExamQuestions
         {
             foreach (var viewModel in viewModels)
             {
-                _ExamQuestionRepository.Add(new ExamQuestion
+                _ExamQuestionRepository.Add(new Models.ExamQuestions
                 {
                     ExamID = viewModel.ExamID,
                     QuestionID = viewModel.QuestionID,

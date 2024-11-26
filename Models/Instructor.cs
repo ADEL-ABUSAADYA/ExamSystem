@@ -7,7 +7,7 @@ namespace ExaminationSystem.Models
     {
         public Instructor() 
         {
-            InstructorCourses = new List<InstructorCourse>();
+            InstructorCourses = new List<InstructorCourses>();
         }
         public string Name { get; set; }
         public string Mobile { get; set; }
@@ -15,7 +15,10 @@ namespace ExaminationSystem.Models
         public DateTime Birthdate { get; set; }
         public string Adress { get; set; }
 
-        public ICollection<InstructorCourse> InstructorCourses { get; set; }
+        public ICollection<InstructorCourses> InstructorCourses { get; set; }
+        public ICollection<Exam> Exams { get; set; }
+        public ICollection<Question> Questions { get; set; }
+        public ICollection<Group> Groups { get; set; }
 
     }
 }

@@ -9,7 +9,7 @@ namespace ExaminationSystem.ViewModels.Instrucotrs
         public DateTime Birthdate { get; set; }
         public string Adress { get; set; }
 
-        public ICollection<InstructorCourse> InstructorCourses { get; set; }
+        public ICollection<InstructorCourses> InstructorCourses { get; set; }
         public override string[] GetPropertyNames()
         {
             return new string[] { "Name", "Birthdate", "Adress" };

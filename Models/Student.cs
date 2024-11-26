@@ -1,11 +1,17 @@
 ﻿namespace ExaminationSystem.Models
 {
-    public class Student
+    public class Student : BaseModel
     {
-        public int ID { get; set; }
+        
         public string Name { get; set; }
         public int Grade { get; set; }
-        public int Age { get; set; }
+        public DateTime Birthdate { get; set; }
         public string Mobile { get; set; }
+        public string Email { get; set; }
+        
+        
+        public ICollection<StudentExams> ExamAssignments{ get; set; }
+        public ICollection<StudentCourses> StudentCourseEnrollments { get; set; }
+        public ICollection<Group> Groups { get; set; }
     }
 }

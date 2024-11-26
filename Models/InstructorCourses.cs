@@ -2,7 +2,7 @@
 
 namespace ExaminationSystem.Models
 {
-    public class InstructorCourse
+    public class InstructorCourses
     {
         public int ID { get; set; }
 
@@ -11,7 +11,6 @@ namespace ExaminationSystem.Models
         public int CourseID { get; set; }
 
         public Instructor Instructor { get; set; }
-
         public Course Course { get; set; }
     }
 }

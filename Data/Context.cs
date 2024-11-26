@@ -6,15 +6,24 @@ namespace ExaminationSystem.Data
 {
     public class Context : DbContext
     {
+        public DbSet<Group> Groups { get; set; }
         public DbSet<Instructor> Instructors { get; set; }
+        public DbSet<Student> Students { get; set; }
         public DbSet<Course> Courses { get; set; }
         public DbSet<Exam> Exams { get; set; }
         public DbSet<Question> Questions { get; set; }
-        public DbSet<ExamQuestion> ExamQuestions { get; set; }
         public DbSet<Answer> Answers { get; set; }
-        public DbSet<InstructorCourse> InstructorsCourse { get; set;}
-        public DbSet<Result> Results { get; set; }
-        public DbSet<Student> Students { get; set; }
+        
+        
+        
+        public DbSet<InstructorCourses> InstructorsCourse { get; set;}
+        public DbSet<StudentCourses> StudentsCourses { get; set; }
+        public DbSet<StudentExams> StudentExams { get; set; }
+        public DbSet<ExamQuestions> ExamQuestions { get; set; }
+        
+        
+        
+        
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
