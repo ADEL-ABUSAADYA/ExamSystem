@@ -28,7 +28,7 @@ namespace ExaminationSystem.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=localhost,1433;Database=ExamSystemDB;User Id=SA;Password=YourPassword123;Encrypt=False;")
+            optionsBuilder.UseSqlServer(@"Server=localhost,1433;Database=ExamSystemDB1;User Id=SA;Password=YourPassword123;Encrypt=False;")
                 .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking)
                 .LogTo(log => Debug.WriteLine(log), LogLevel.Information)
                 .EnableSensitiveDataLogging();
