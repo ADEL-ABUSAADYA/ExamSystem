@@ -52,7 +52,7 @@ namespace ExaminationSystem.Services.Exams
         {
             //viewModel.QuestionsIDs = new List<int>();
 
-            //Add(viewModel);
+            
         }
         public ExamViewModel GetExamByName(string name)
         {
