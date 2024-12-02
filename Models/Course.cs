@@ -15,7 +15,7 @@
         
 
         public ICollection<InstructorCourse> InstructorCourses { get; set; }
-        public ICollection<StudentCourse> StudentCourseEnrollments { get; set; }
+        public ICollection<StudentCourse> StudentCourses { get; set; }
         public ICollection<Group> Groups { get; set; }
     }
 }

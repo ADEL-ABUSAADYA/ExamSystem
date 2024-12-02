@@ -11,7 +11,7 @@
         
         
         public ICollection<StudentExam> ExamAssignments{ get; set; }
-        public ICollection<StudentCourse> StudentCourseEnrollments { get; set; }
+        public ICollection<StudentCourse> StudentCourses { get; set; }
         public ICollection<Group> Groups { get; set; }
     }
 }

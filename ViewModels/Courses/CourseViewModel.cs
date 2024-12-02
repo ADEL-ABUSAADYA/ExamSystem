@@ -1,4 +1,5 @@
 using ExaminationSystem.ViewModels.Groups;
+using ExaminationSystem.ViewModels.Instrucotrs;
 using ExaminationSystem.ViewModels.InstructorCourses;
 using ExaminationSystem.ViewModels.StudentCourses;
 
@@ -15,8 +16,8 @@ public class CourseViewModel
     public DateTime EndDate { get; set; }
         
 
-    public ICollection<InstructorCoursesViewModel> InstructorCourses { get; set; }
-    public ICollection<StudentCoursesViewModel> StudentCourseEnrollments { get; set; }
-    public ICollection<GroupViewModel> Groups { get; set; }
+    public string InsructorName { get; set; }
+    public List<string> StudentsEnrolled { get; set; }
+    public List<string> Groups { get; set; }
     
 }

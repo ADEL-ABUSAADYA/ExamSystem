@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
 using ExaminationSystem.Models;
 using ExaminationSystem.ViewModels;
+using ExaminationSystem.ViewModels.Courses;
 using ExaminationSystem.ViewModels.Instrucotrs;
+using ExaminationSystem.ViewModels.InstructorCourses;
 
 namespace ExaminationSystem;
 
@@ -10,14 +12,8 @@ public class InstructorProfile : AutoMapper.Profile
     public InstructorProfile()
     {
         // Assuming you want to map from Instructor to InstructorViewModel
-        CreateMap<Instructor, InstructorCreateViewModel>().ReverseMap();
-        CreateMap<Instructor, InstructorViewModel>().ReverseMap();
-            // .IncludeBase<Instructor, BaseViewModel>();
-
-        // Assuming BaseViewModel is a parent class of InstructorViewModel
-        // CreateMap<Instructor, BaseViewModel>()
-        //     .IncludeBase<Instructor, InstructorViewModel>();
-        // // CreateMap<Instructor, BaseViewModel>().IncludeBase<Instructor, InstructorViewModel>();
-        // // .ForMember(dest => dest.Birthdate, ops => ops.MapFrom(src => DateTime.Parse(src.Birthdate)));
+        CreateMap<Instructor, InstructorViewModel>()
+        .ForMember(dest => dest.InstructorCourses, opt => opt.MapFrom(src => src.InstructorCourses.Select(ic => ic.Course.Name)));
+    //
     }
 }

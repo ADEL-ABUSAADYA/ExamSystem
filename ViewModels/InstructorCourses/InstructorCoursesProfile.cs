@@ -9,6 +9,6 @@ public class InstructorCoursesProfile : AutoMapper.Profile
 {
     public InstructorCoursesProfile()
     {
-        CreateMap<InstructorCourse, InstructorCoursesViewModel>().ReverseMap();
+        CreateMap<Course, InstructorCoursesViewModel>().ReverseMap();
     }
 }
